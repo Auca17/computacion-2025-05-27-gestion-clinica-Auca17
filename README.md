@@ -3,9 +3,9 @@
 ## 👤 Información del Alumno
 
 ### 📋 Datos Personales
-- **Nombre y Apellido**: [Completar con nombre y apellido]
+- **Nombre y Apellido**: Augustus Rufino
 - **Ciclo Lectivo**: 2025
-- **Carrera**: [Completar con nombre de la carrera]
+- **Carrera**: Ingenieria Informatica
 
 ## ⏰ Información Importante sobre la Entrega
 
@@ -229,7 +229,7 @@ Clase principal que representa el sistema de gestión de la clínica.
 
 ---
 
-## ⚠️ Excepciones Personalizadas  
+## ⚠️ Excepciones Personalizadas
 El sistema utiliza **excepciones personalizadas** para representar errores específicos del dominio de la clínica. Estas excepciones son lanzadas por la clase `Clinica` cuando ocurre una situación inválida o inesperada, como por ejemplo:
 
 - `PacienteNoEncontradoException`
