@@ -56,7 +56,6 @@ class TestClinica(unittest.TestCase):
         ))
 
     def test_turno_no_duplicado(self):
-        # Using getter methods
         self.clinica.agendar_turno(self.paciente.obtener_dni(), self.medico.obtener_matricula(), 
                                   "Cardiología", self.turno.obtener_fecha_hora())
         with self.assertRaises(TurnoOcupadoException):
@@ -68,7 +67,6 @@ class TestClinica(unittest.TestCase):
             self.clinica.obtener_historia_clinica("99999999")
 
     def test_medico_no_disponible(self):
-        # Using getter methods
         with self.assertRaises(MedicoNoDisponibleException):
             self.clinica.agendar_turno(self.paciente.obtener_dni(), "M0000", 
                                       "Cardiología", self.turno.obtener_fecha_hora())

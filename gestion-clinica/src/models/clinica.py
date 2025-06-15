@@ -105,3 +105,6 @@ class Clinica:
         if not especialidad_disponible:
             return False
         return especialidad_disponible.lower() == especialidad_solicitada.lower()
+    
+    def obtener_turnos(self):
+        return self.__turnos__.copy()
