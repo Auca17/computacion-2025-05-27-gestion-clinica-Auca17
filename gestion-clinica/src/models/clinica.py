@@ -31,11 +31,13 @@ class Clinica:
             raise PacienteNoEncontradoException("Paciente no encontrado.")
         if matricula not in self.__medicos__:
             raise MedicoNoDisponibleException("Médico no encontrado.")
-        
+
         medico = self.__medicos__[matricula]
-        if not medico.obtener_especialidad_para_dia(fecha_hora.strftime("%A").lower()):
+        # Traduce el día a español
+        dia_espanol = self.obtener_dia_semana_en_espanol(fecha_hora)
+        if not medico.obtener_especialidad_para_dia(dia_espanol.lower()):
             raise MedicoNoDisponibleException("El médico no atiende esa especialidad en el día solicitado.")
-        
+
         if any(turno.obtener_fecha_hora() == fecha_hora and turno.obtener_medico().obtener_matricula() == matricula for turno in self.__turnos__):
             raise TurnoOcupadoException("El turno ya está ocupado.")
 
@@ -103,4 +105,3 @@ class Clinica:
         if not especialidad_disponible:
             return False
         return especialidad_disponible.lower() == especialidad_solicitada.lower()
-    

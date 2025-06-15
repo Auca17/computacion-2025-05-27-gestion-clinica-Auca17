@@ -28,22 +28,32 @@ class TestClinica(unittest.TestCase):
         self.medico.agregar_especialidad(self.especialidad)
 
     def test_agregar_paciente(self):
-        self.assertIn(self.paciente.obtener_dni(), self.clinica._Clinica__pacientes__)
+        self.assertIn(self.paciente.obtener_dni(), self.clinica.__pacientes__)
 
     def test_agregar_medico(self):
-        self.assertIn(self.medico.obtener_matricula(), self.clinica._Clinica__medicos__)
+        self.assertIn(self.medico.obtener_matricula(), self.clinica.__medicos__)
 
     def test_agendar_turno(self):
-        # Using getter methods instead of direct attribute access
         self.clinica.agendar_turno(self.paciente.obtener_dni(), self.medico.obtener_matricula(), 
                                   "Cardiología", self.turno.obtener_fecha_hora())
-        self.assertIn(self.turno, self.clinica._Clinica__turnos)
+        self.assertTrue(any(
+            t.__paciente__ == self.turno.__paciente__ and
+            t.__medico__ == self.turno.__medico__ and
+            t.__fecha_hora__ == self.turno.__fecha_hora__ and
+            t.__especialidad__ == self.turno.__especialidad__
+            for t in self.clinica.__turnos__
+        ))
 
     def test_emitir_receta(self):
-        # Using getter methods
         self.clinica.emitir_receta(self.paciente.obtener_dni(), 
-                                 self.medico.obtener_matricula(), ["Aspirina"])
-        self.assertIn(self.receta, self.clinica.__historias_clinicas__[self.paciente.obtener_dni()].obtener_recetas())
+                                   self.medico.obtener_matricula(), ["Aspirina"])
+        recetas = self.clinica.__historias_clinicas__[self.paciente.obtener_dni()].obtener_recetas()
+        self.assertTrue(any(
+            r.__paciente__ == self.paciente and
+            r.__medico__ == self.medico and
+            r.__medicamentos__ == ["Aspirina"]
+            for r in recetas
+        ))
 
     def test_turno_no_duplicado(self):
         # Using getter methods
