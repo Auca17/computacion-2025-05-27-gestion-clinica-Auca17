@@ -1,67 +1,54 @@
-Diseño General del Sistema
-El sistema de gestión para la clínica está diseñado siguiendo los principios de la programación orientada a objetos. 
-El modelo principal está compuesto por las clases Paciente, Medico, Especialidad, Turno, Receta, HistoriaClinica y Clinica. 
-Cada clase encapsula sus atributos y responsabilidades, utilizando atributos privados con doble guion bajo al principio y al final, tal como exige la consigna.
+=============================
+DISEÑO GENERAL DEL SISTEMA
+=============================
 
-La clase Clinica centraliza la gestión de pacientes, médicos, turnos, recetas e historias clínicas, y es la única responsable de las validaciones de negocio y del lanzamiento de excepciones personalizadas. 
-La interfaz de usuario es una CLI (interfaz de consola) que permite interactuar con el sistema de manera sencilla, mostrando un menú y solicitando los datos necesarios para cada operación. 
-La CLI solo se encarga de la interacción y el manejo de errores, delegando toda la lógica al modelo.
+El sistema de gestión para la clínica está implementado utilizando programación orientada a objetos. El modelo principal está compuesto por las clases: Paciente, Medico, Especialidad, Turno, Receta, HistoriaClinica y Clinica. Cada clase encapsula sus atributos y responsabilidades.
 
-El sistema incluye pruebas unitarias con unittest que validan los casos principales y los errores esperados, asegurando la robustez del modelo.
+La clase Clinica centraliza la gestión de pacientes, médicos, turnos, recetas e historias clínicas, y es responsable de las validaciones de negocio y del lanzamiento de excepciones personalizadas.
 
--- Principios de Diseño Aplicados
-Programación Orientada a Objetos:
-Cada entidad del dominio (paciente, médico, turno, etc.) es una clase con atributos y métodos propios.
-Encapsulamiento:
-Los datos sensibles están protegidos mediante atributos privados y solo se accede a ellos mediante métodos públicos.
-Responsabilidad Única:
-Cada clase tiene una única responsabilidad clara (por ejemplo, Clinica gestiona la lógica, CLI la interacción).
-Abierto/Cerrado:
-El sistema está diseñado para ser abierto a extensiones (nuevas funcionalidades) pero cerrado a modificaciones innecesarias en el núcleo.
-Robustez y validación desde el modelo:
-Todas las validaciones y reglas de negocio se implementan en el modelo, no en la interfaz, garantizando la coherencia de los datos.
+La interfaz de usuario es una CLI (interfaz de consola) que permite interactuar con el sistema mostrando un menú y solicitando los datos necesarios para cada operación. La CLI se encarga de la interacción y el manejo de errores, delegando la lógica al modelo.
 
--- Ventajas del Diseño
-Separación clara de responsabilidades:
-La lógica de negocio y validaciones están en el modelo (Clinica y demás clases), mientras que la CLI solo gestiona la interacción con el usuario y el manejo de errores.
-Atributos privados:
-Todos los atributos relevantes son privados (doble guion bajo al principio y al final), lo que protege la integridad de los datos.
+El sistema incluye pruebas unitarias con unittest que validan los casos principales y los errores esperados.
 
-Fácil de mantener y extender:
-La estructura modular permite agregar nuevas funcionalidades o modificar las existentes sin afectar otras partes del sistema.
-Pruebas unitarias:
-El modelo está cubierto por tests automáticos, lo que asegura su correcto funcionamiento y facilita la detección de errores.
+-------------------------------
+PRINCIPIOS DE DISEÑO APLICADOS
+-------------------------------
 
--- Flujo de Uso
-Inicio:
-Al ejecutar la aplicación, se muestra un menú interactivo en consola con todas las operaciones principales de la clínica.
+- Programación orientada a objetos: cada entidad del dominio es una clase con atributos y métodos propios.
+- Encapsulamiento: los datos sensibles están protegidos mediante atributos privados y se accede a ellos mediante métodos públicos.
+- Responsabilidad única: cada clase tiene una responsabilidad clara.
+- Validación desde el modelo: todas las validaciones y reglas de negocio se implementan en el modelo.
 
--Operaciones disponibles:
+----------------------
+ VENTAJAS DEL DISEÑO
+----------------------
 
-Agregar paciente
-Agregar médico
-Agendar turno
-Agregar especialidad a un médico
-Emitir receta
-Ver historia clínica de un paciente
-Ver todos los turnos, pacientes o médicos registrados
-Salir
--Interacción:
-El usuario selecciona una opción, ingresa los datos solicitados y el sistema responde mostrando el resultado o un mensaje de error amigable si corresponde.
+- Separación de responsabilidades entre modelo y CLI.
+- Integridad de los datos mediante atributos privados.
+- Estructura modular que facilita el mantenimiento y la extensión.
+- Pruebas unitarias que aseguran el correcto funcionamiento del modelo.
 
--Ciclo:
-El menú se repite hasta que el usuario elige salir.
+-----------------
+ FLUJO DE USO
+-----------------
 
--Ejecucion de tests:
-(Desde mi consola local) cd "c:\Users\Auca17\Desktop\guardar Augustus\Tps de computacion\computacion-2025-05-27-gestion-clinica-Auca17"
-python -m unittest discover -s gestion-clinica/tests
--------
-o utilizar este: 
-python -m unittest discover gestion-clinica/tests
+1. Al ejecutar la aplicación(desde main.py), se muestra un menú interactivo en consola con las operaciones principales de la clínica.
+2. El usuario selecciona una opción, ingresa los datos solicitados y el sistema responde mostrando el resultado o un mensaje de error.
+3. El menú se repite hasta que el usuario elige salir.
 
---De manera individual: (ejemplo de receta)
-python -m unittest gestion-clinica.tests.test_clinica.TestClinica.test_emitir_receta
+-------------------------------
+ INSTRUCCIONES DE EJECUCIÓN
+-------------------------------
 
--Ejecucion de aplicacion:
-Utilizar la extension de python para poder ejecutar la aplicacion correctamente 
+Para ejecutar la aplicación interactiva:
+1. Abrir una terminal en la carpeta principal del proyecto.
+2. Ejecutar:
+   python gestion-clinica/main.py
 
+Para ejecutar todos los tests:
+1. Abrir una terminal en la carpeta principal del proyecto.
+2. Ejecutar:
+   python -m unittest discover gestion-clinica/tests
+
+Para ejecutar un test individual (ejemplo):
+   python -m unittest gestion-clinica.tests.test_clinica.TestClinica.test_emitir_receta
