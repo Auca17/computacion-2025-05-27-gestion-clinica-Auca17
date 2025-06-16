@@ -20,7 +20,7 @@ PRINCIPIOS DE DISEÑO APLICADOS
 - Validación desde el modelo: todas las validaciones y reglas de negocio se implementan en el modelo.
 
 ----------------------
- VENTAJAS DEL DISEÑO
+VENTAJAS DEL DISEÑO
 ----------------------
 
 - Separación de responsabilidades entre modelo y CLI.
@@ -29,7 +29,7 @@ PRINCIPIOS DE DISEÑO APLICADOS
 - Pruebas unitarias que aseguran el correcto funcionamiento del modelo.
 
 -----------------
- FLUJO DE USO
+FLUJO DE USO
 -----------------
 
 1. Al ejecutar la aplicación(desde main.py), se muestra un menú interactivo en consola con las operaciones principales de la clínica.
@@ -37,7 +37,7 @@ PRINCIPIOS DE DISEÑO APLICADOS
 3. El menú se repite hasta que el usuario elige salir.
 
 -------------------------------
- INSTRUCCIONES DE EJECUCIÓN
+INSTRUCCIONES DE EJECUCIÓN
 -------------------------------
 
 Para ejecutar la aplicación interactiva:
