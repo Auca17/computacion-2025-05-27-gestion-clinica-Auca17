@@ -2,6 +2,12 @@ from datetime import datetime
 
 class Receta:
     def __init__(self, paciente, medico, medicamentos, fecha=None):
+        if paciente is None:
+            raise ValueError("El paciente no puede ser None.")
+        if medico is None:
+            raise ValueError("El médico no puede ser None.")
+        if not medicamentos or not isinstance(medicamentos, list) or any(not m or not isinstance(m, str) for m in medicamentos):
+            raise ValueError("La receta debe contener al menos un medicamento válido.")
         self.__paciente__ = paciente
         self.__medico__ = medico
         self.__medicamentos__ = medicamentos

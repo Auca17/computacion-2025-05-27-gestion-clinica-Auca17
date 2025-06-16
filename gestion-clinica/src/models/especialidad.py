@@ -1,7 +1,10 @@
 class Especialidad:
+    DIAS_VALIDOS = ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"]
+
     def __init__(self, tipo: str, dias: list[str]):
         self.__tipo__ = tipo
-        self.__dias__ = dias
+        # Solo acepta días válidos
+        self.__dias__ = [d for d in dias if d.lower() in self.DIAS_VALIDOS]
 
     def obtener_especialidad(self) -> str:
         return self.__tipo__

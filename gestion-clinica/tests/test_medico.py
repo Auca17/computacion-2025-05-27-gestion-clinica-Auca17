@@ -29,5 +29,31 @@ class TestMedico(unittest.TestCase):
         expected_str = "Dr. Juan Pérez (Matrícula: 12345, Especialidades: Cardiología)"
         self.assertEqual(str(self.medico), expected_str)
 
+    def test_no_especialidad_duplicada(self):
+        self.medico.agregar_especialidad(self.especialidad)
+        # Intentar agregar la misma especialidad otra vez
+        self.medico.agregar_especialidad(self.especialidad)
+        especialidades = [e.obtener_especialidad() for e in self.medico.__especialidades__]
+        # Debe haber solo una especialidad "Cardiología"
+        self.assertEqual(especialidades.count("Cardiología"), 1)
+
+class TestMedicoValidaciones(unittest.TestCase):
+
+    def test_matricula_vacia(self):
+        with self.assertRaises(ValueError):
+            Medico("Dr. House", "")
+
+    def test_matricula_con_espacios(self):
+        with self.assertRaises(ValueError):
+            Medico("Dr. House", "   ")
+
+    def test_nombre_vacio(self):
+        with self.assertRaises(ValueError):
+            Medico("", "M1234")
+
+    def test_nombre_con_numeros(self):
+        with self.assertRaises(ValueError):
+            Medico("Dr. 1234", "M1234")
+
 if __name__ == '__main__':
     unittest.main()
