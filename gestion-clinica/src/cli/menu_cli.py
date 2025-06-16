@@ -1,4 +1,3 @@
-# menu_cli.py
 
 class CLI:
     def __init__(self, clinica):

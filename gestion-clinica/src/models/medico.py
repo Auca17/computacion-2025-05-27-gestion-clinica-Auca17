@@ -17,5 +17,5 @@ class Medico:
         return None
 
     def __str__(self) -> str:
-        especialidades_str = ', '.join(e.obtener_especialidad() for e in self.__especialidades__)  # Fixed - added __ at end
-        return f"{self.__nombre__} (Matrícula: {self.__matricula__}, Especialidades: {especialidades_str})"  # Fixed - added __ at end
+        especialidades_str = ', '.join(e.obtener_especialidad() for e in self.__especialidades__)  
+        return f"{self.__nombre__} (Matrícula: {self.__matricula__}, Especialidades: {especialidades_str})"  

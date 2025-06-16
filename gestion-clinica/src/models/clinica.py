@@ -33,7 +33,7 @@ class Clinica:
             raise MedicoNoDisponibleException("Médico no encontrado.")
 
         medico = self.__medicos__[matricula]
-        # Traduce el día a español
+    
         dia_espanol = self.obtener_dia_semana_en_espanol(fecha_hora)
         if not medico.obtener_especialidad_para_dia(dia_espanol.lower()):
             raise MedicoNoDisponibleException("El médico no atiende esa especialidad en el día solicitado.")

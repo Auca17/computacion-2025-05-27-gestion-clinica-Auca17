@@ -1,4 +1,3 @@
-# main.py
 
 from src.cli.menu_cli import CLI
 from src.models.clinica import Clinica

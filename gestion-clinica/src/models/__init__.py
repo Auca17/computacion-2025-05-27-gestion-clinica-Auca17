@@ -1,4 +1,3 @@
-# src/models/__init__.py
 
 from .paciente import Paciente
 from .medico import Medico
