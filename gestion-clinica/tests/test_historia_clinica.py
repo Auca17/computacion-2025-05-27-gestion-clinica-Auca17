@@ -1,6 +1,7 @@
 import sys
 import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import unittest
 from datetime import datetime
@@ -11,6 +12,7 @@ from src.models.turno import Turno
 from src.models.receta import Receta
 from src.models.historia_clinica import HistoriaClinica
 
+
 class TestHistoriaClinica(unittest.TestCase):
 
     def setUp(self):
@@ -18,7 +20,9 @@ class TestHistoriaClinica(unittest.TestCase):
         self.medico = Medico("Dr. House", "M9999")
         self.especialidad = Especialidad("Clínica Médica", ["lunes", "jueves"])
         self.medico.agregar_especialidad(self.especialidad)
-        self.turno = Turno(self.paciente, self.medico, datetime(2025, 7, 3, 9, 0), "Clínica Médica")
+        self.turno = Turno(
+            self.paciente, self.medico, datetime(2025, 7, 3, 9, 0), "Clínica Médica"
+        )
         self.receta = Receta(self.paciente, self.medico, ["Ibuprofeno"])
         self.historia = HistoriaClinica(self.paciente)
 
@@ -48,5 +52,6 @@ class TestHistoriaClinica(unittest.TestCase):
         self.assertIn(str(self.turno), texto)
         self.assertIn(str(self.receta), texto)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

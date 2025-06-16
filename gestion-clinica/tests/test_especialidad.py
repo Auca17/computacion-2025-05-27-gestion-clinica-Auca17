@@ -1,9 +1,11 @@
 import sys
 import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import unittest
 from src.models.especialidad import Especialidad
+
 
 class TestEspecialidad(unittest.TestCase):
 
@@ -15,7 +17,9 @@ class TestEspecialidad(unittest.TestCase):
 
     def test_verificar_dia_true(self):
         self.assertTrue(self.especialidad.verificar_dia("lunes"))
-        self.assertTrue(self.especialidad.verificar_dia("Miércoles"))  # mayúsculas/minúsculas
+        self.assertTrue(
+            self.especialidad.verificar_dia("Miércoles")
+        )  # mayúsculas/minúsculas
 
     def test_verificar_dia_false(self):
         self.assertFalse(self.especialidad.verificar_dia("domingo"))
@@ -30,5 +34,6 @@ class TestEspecialidad(unittest.TestCase):
         self.assertTrue(especialidad.verificar_dia("lunes"))
         self.assertFalse(especialidad.verificar_dia("funday"))
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

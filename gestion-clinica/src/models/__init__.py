@@ -1,4 +1,3 @@
-
 from .paciente import Paciente
 from .medico import Medico
 from .especialidad import Especialidad

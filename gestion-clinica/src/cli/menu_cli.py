@@ -1,4 +1,3 @@
-
 class CLI:
     def __init__(self, clinica):
         self.clinica = clinica
@@ -51,6 +50,7 @@ class CLI:
             dni = input("Ingrese el DNI del paciente: ")
             fecha_nacimiento = input("Ingrese la fecha de nacimiento (dd/mm/aaaa): ")
             from src.models.paciente import Paciente
+
             paciente = Paciente(nombre, dni, fecha_nacimiento)
             self.clinica.agregar_paciente(paciente)
             print(f"Paciente {nombre} registrado correctamente.")
@@ -62,6 +62,7 @@ class CLI:
             nombre = input("Ingrese el nombre del médico: ")
             matricula = input("Ingrese la matrícula del médico: ")
             from src.models.medico import Medico
+
             medico = Medico(nombre, matricula)
             self.clinica.agregar_medico(medico)
             print(f"Médico {nombre} registrado correctamente.")
@@ -73,8 +74,11 @@ class CLI:
             dni = input("Ingrese el DNI del paciente: ")
             matricula = input("Ingrese la matrícula del médico: ")
             especialidad = input("Ingrese la especialidad: ")
-            fecha_hora_str = input("Ingrese la fecha y hora del turno (YYYY-MM-DD HH:MM): ")
+            fecha_hora_str = input(
+                "Ingrese la fecha y hora del turno (YYYY-MM-DD HH:MM): "
+            )
             from datetime import datetime
+
             fecha_hora = datetime.strptime(fecha_hora_str, "%Y-%m-%d %H:%M")
             self.clinica.agendar_turno(dni, matricula, especialidad, fecha_hora)
             print("Turno agendado correctamente.")
@@ -87,15 +91,16 @@ class CLI:
             especialidad_nombre = input("Ingrese la especialidad: ")
             dias_str = input("Ingrese los días de atención (separados por comas): ")
             dias = [dia.strip() for dia in dias_str.split(",")]
-            
+
             from src.models.especialidad import Especialidad
+
             especialidad = Especialidad(especialidad_nombre, dias)
-            
+
             medico = self.clinica.obtener_medico_por_matricula(matricula)
             if not medico:
                 print(f"No se encontró médico con matrícula {matricula}.")
                 return
-                
+
             medico.agregar_especialidad(especialidad)
             print(f"Especialidad {especialidad_nombre} agregada correctamente.")
         except Exception as e:
@@ -107,7 +112,7 @@ class CLI:
             matricula = input("Ingrese la matrícula del médico: ")
             medicamentos_str = input("Ingrese los medicamentos (separados por comas): ")
             medicamentos = [med.strip() for med in medicamentos_str.split(",")]
-            
+
             self.clinica.emitir_receta(dni, matricula, medicamentos)
             print("Receta emitida correctamente.")
         except Exception as e:

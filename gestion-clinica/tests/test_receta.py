@@ -1,12 +1,14 @@
 import sys
 import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import unittest
 from datetime import datetime
 from src.models.paciente import Paciente
 from src.models.medico import Medico
 from src.models.receta import Receta
+
 
 class TestReceta(unittest.TestCase):
 
@@ -28,6 +30,7 @@ class TestReceta(unittest.TestCase):
     def test_fecha_emision(self):
         self.assertIsInstance(self.receta.__fecha__, datetime)
 
+
 class TestRecetaValidaciones(unittest.TestCase):
 
     def setUp(self):
@@ -45,6 +48,7 @@ class TestRecetaValidaciones(unittest.TestCase):
     def test_receta_medicamento_no_string(self):
         with self.assertRaises(ValueError):
             Receta(self.paciente, self.medico, [123])
+
 
 class TestRecetaExtras(unittest.TestCase):
     def setUp(self):
@@ -64,13 +68,16 @@ class TestRecetaExtras(unittest.TestCase):
 
     def test_receta_paciente_none(self):
         from src.models.receta import Receta
+
         with self.assertRaises(ValueError):
             Receta(None, self.medico, ["Ibuprofeno"])
 
     def test_receta_medico_none(self):
         from src.models.receta import Receta
+
         with self.assertRaises(ValueError):
             Receta(self.paciente, None, ["Ibuprofeno"])
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
